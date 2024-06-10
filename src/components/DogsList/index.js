@@ -10,6 +10,7 @@ const DogsList = () => {
         const getDogs = async () => {
             try{
                 const response = await axios.get("https://api.thedogapi.com/v1/breeds");                
+                console.log(response);                
                 setDogs(response.data);
             }catch(error){
                 setError(error);
@@ -26,10 +27,9 @@ const DogsList = () => {
                 dogs.map((dog) => {                      
                     return (
                             <article key={dog.id}>
-                                <p>Name: {dog.name}</p>
-                                <p>Origin: {dog.origin}</p>
+                                <p>Name: {dog.name}</p>                                
                                 <p>Life Span: {dog.life_span}</p>
-                                <img alt={`${dog.name}`} src={`https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg`}></img>
+                                <img width="200" alt={`${dog.name}`} src={`https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg`}></img>
                             </article>
                     );
                 })
