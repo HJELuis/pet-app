@@ -9,8 +9,7 @@ const DogsList = () => {
     useEffect(() =>{
         const getDogs = async () => {
             try{
-                const response = await axios.get("https://api.thedogapi.com/v1/breeds");                
-                console.log(response);                
+                const response = await axios.get("https://api.thedogapi.com/v1/breeds");                                              
                 setDogs(response.data);
             }catch(error){
                 setError(error);

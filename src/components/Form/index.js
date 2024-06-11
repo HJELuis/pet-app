@@ -1,9 +1,10 @@
 import React, { Fragment } from "react";
 
-const Form = () => {
+const Form = ({temperaments}) => {
 
     return (
         <Fragment>
+            
             <form>                
                 <fieldset>
                     <legend>Choose a pet</legend>
