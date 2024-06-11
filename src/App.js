@@ -64,7 +64,7 @@ function App() {
 
   return (
     <div className="App">
-      <Form formTemperaments={temperaments}/>
+      <Form dogCatTemperaments={temperaments}/>
       <DogsList />
     </div>
   );
