@@ -6,8 +6,7 @@ const DogsList = () => {
     return(
         <Fragment>
             <section> 
-            {                         
-            
+            {                                     
                 
             }
             </section>            

@@ -3,11 +3,6 @@ import React, { Fragment } from "react";
 const Form = ({dogCatTemperaments}) => {
 
 
-    const showData = () => {
-        console.log(dogCatTemperaments);
-    }
-
-
     return (
         <Fragment>
             
@@ -21,17 +16,19 @@ const Form = ({dogCatTemperaments}) => {
                 </fieldset> 
                 <fieldset>
                     <legend>Choose a temperament that you'd like your pet had</legend> 
-                    {
+                    {                        
                         
-                        dogCatTemperaments.map(temperament => {
+                        dogCatTemperaments.map((temperament, index) => (
                             
-                            return(
-                                <>
-                                    <label htmlFor={`${temperament.toLowerCase()}`}>{temperament}</label>
-                                    <input id={`${temperament.toLowerCase()}`} type="checkbox" />  
+                            
+                                <>                                
+                                    <div key={index} style={{display: 'inline'}}>                                    
+                                        <label htmlFor={`${temperament.toLowerCase()}`}>{temperament}</label>
+                                        <input id={`${temperament.toLowerCase()}`} type="checkbox" /> 
+                                    </div> 
                                 </> 
-                            )
-                        }) 
+                            
+                        )) 
                     }
                                                                                                                              
                 </fieldset>                          
