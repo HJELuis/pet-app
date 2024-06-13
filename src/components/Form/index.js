@@ -18,16 +18,13 @@ const Form = ({dogCatTemperaments}) => {
                     <legend>Choose a temperament that you'd like your pet had</legend> 
                     {                        
                         
-                        dogCatTemperaments.map((temperament, index) => (
-                            
-                            
-                                <>                                
-                                    <div key={index} style={{display: 'inline'}}>                                    
-                                        <label htmlFor={`${temperament.toLowerCase()}`}>{temperament}</label>
-                                        <input id={`${temperament.toLowerCase()}`} type="checkbox" /> 
-                                    </div> 
-                                </> 
-                            
+                        dogCatTemperaments.map(temperamentObj => (                                                                                            
+                                                             
+                            <div key={temperamentObj.id} style={{display: 'inline'}}>                                    
+                                <label htmlFor={`${temperamentObj.temperament.toLowerCase()}`}>{temperamentObj.temperament}</label>
+                                <input id={`${temperamentObj.temperament.toLowerCase()}`} type="checkbox" /> 
+                            </div> 
+                                                            
                         )) 
                     }
                                                                                                                              
