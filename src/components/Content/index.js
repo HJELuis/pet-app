@@ -1,11 +1,13 @@
 import React, { Fragment, useState } from "react";
+import DogsList from "../DogsList";
 
 const Content = ({dogCatTemperaments}) => {
 
     const[form, setForm] = useState({
-        pet: "dog",
+        pet: "",
         temperaments: [],
-    });
+        isAvailable: false
+    });    
 
     const handleSelectChange = (event) => {        
         setForm( prev => ({...prev, [event.target.name]:event.target.value}));
@@ -15,9 +17,13 @@ const Content = ({dogCatTemperaments}) => {
         setForm(prev => ({...prev, [event.target.name]: [...prev.temperaments, event.target.id]}))
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(form);
+    const handleSubmit = (event) => {       
+        event.preventDefault();    
+        setForm(prev => ({...prev, isAvailable:true}));
+    }
+
+    const renderContent = () => {
+        if(form.pet === "dog") return <DogsList />        
     }
 
     return (
@@ -26,6 +32,7 @@ const Content = ({dogCatTemperaments}) => {
                 <fieldset>
                     <legend>Choose a pet</legend>
                     <select name="pet" onChange={handleSelectChange}>
+                        <option value=""></option>
                         <option value="dog">Dog</option>
                         <option value="cat">Cat</option>
                     </select>
@@ -44,7 +51,10 @@ const Content = ({dogCatTemperaments}) => {
                     }                                                                                                                             
                 </fieldset>  
                 <button value="submit">Ingresar</button>
-            </form>
+            </form> 
+            {
+                form.isAvailable === true  ? renderContent() : <></>
+            }           
         </Fragment>
     )
 }

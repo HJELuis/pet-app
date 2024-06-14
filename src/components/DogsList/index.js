@@ -6,9 +6,7 @@ const DogsList = () => {
     return(
         <Fragment>
             <section> 
-            {                                     
-                
-            }
+                <h1>Sección para perros</h1>
             </section>            
         </Fragment>
     )

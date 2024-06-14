@@ -1,5 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
-//import DogsList from "./components/DogsList";
+import React, {useEffect, useState} from "react";
 import Content from "./components/Content";
 import axios from "axios";
 
@@ -27,7 +26,7 @@ function App() {
     getData();     
   },[])
 
-  /*Obteniendo temperamentos para usarlos en el componente Form*/
+  /*Obteniendo temperamentos para usarlos en el elemento Form*/
 
   const getTemperaments = () => {  
     
