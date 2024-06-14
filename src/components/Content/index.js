@@ -1,14 +1,23 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import DogsList from "../DogsList";
+import CatsList from "../CatsList";
+
 
 const Content = ({dogCatTemperaments}) => {
 
     const[form, setForm] = useState({
         pet: "",
         temperaments: [],
-        isAvailable: false
+        isAvailable: false,
     });    
 
+   /*  useEffect(() => {
+        if (form.isAvailable) {
+          // Actualizar isAvailable a false después de la primera renderización
+          setForm(prev => ({ ...prev, isAvailable: false}));        
+        }
+      }, [form.isAvailable]);
+ */
     const handleSelectChange = (event) => {        
         setForm( prev => ({...prev, [event.target.name]:event.target.value}));
     }
@@ -19,12 +28,16 @@ const Content = ({dogCatTemperaments}) => {
 
     const handleSubmit = (event) => {       
         event.preventDefault();    
-        setForm(prev => ({...prev, isAvailable:true}));
+        setForm(prev => ({...prev, isAvailable:true}));        
     }
 
-    const renderContent = () => {
-        if(form.pet === "dog") return <DogsList />        
+    const renderContent = () => {                
+        if(form.pet === "dog") return <DogsList/>  
+        if(form.pet === "cat") return <CatsList />                
     }
+
+  
+    
 
     return (
         <Fragment>            
@@ -52,9 +65,13 @@ const Content = ({dogCatTemperaments}) => {
                 </fieldset>  
                 <button value="submit">Ingresar</button>
             </form> 
-            {
-                form.isAvailable === true  ? renderContent() : <></>
-            }           
+            <section>
+                {
+                    form.isAvailable === true  ? renderContent() : <></>                                                                        
+                }  
+                
+            </section>                
+             
         </Fragment>
     )
 }
