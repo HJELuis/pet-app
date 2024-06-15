@@ -1,23 +1,16 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState} from "react";
 import DogsList from "../DogsList";
 import CatsList from "../CatsList";
-
 
 const Content = ({dogCatTemperaments}) => {
 
     const[form, setForm] = useState({
         pet: "",
-        temperaments: [],
-        isAvailable: false,
+        temperaments: [],        
     });    
 
-   /*  useEffect(() => {
-        if (form.isAvailable) {
-          // Actualizar isAvailable a false después de la primera renderización
-          setForm(prev => ({ ...prev, isAvailable: false}));        
-        }
-      }, [form.isAvailable]);
- */
+    const[flag, setFlag] = useState(false);
+   
     const handleSelectChange = (event) => {        
         setForm( prev => ({...prev, [event.target.name]:event.target.value}));
     }
@@ -26,19 +19,16 @@ const Content = ({dogCatTemperaments}) => {
         setForm(prev => ({...prev, [event.target.name]: [...prev.temperaments, event.target.id]}))
     }
 
-    const handleSubmit = (event) => {       
-        event.preventDefault();    
-        setForm(prev => ({...prev, isAvailable:true}));        
+    const handleSubmit = (event) => {                    
+        event.preventDefault();  
+        setFlag(true);            
     }
 
-    const renderContent = () => {                
-        if(form.pet === "dog") return <DogsList/>  
-        if(form.pet === "cat") return <CatsList />                
-    }
-
-  
-    
-
+   const renderContent = () => {  
+    if(flag === true && form.pet === "dog") return <DogsList />
+    if(flag === false && form.pet === "cat") return <CatsList />
+   }
+          
     return (
         <Fragment>            
             <form onSubmit={handleSubmit}>                
@@ -67,9 +57,8 @@ const Content = ({dogCatTemperaments}) => {
             </form> 
             <section>
                 {
-                    form.isAvailable === true  ? renderContent() : <></>                                                                        
-                }  
-                
+                   renderContent()                                                               
+                }                                
             </section>                
              
         </Fragment>
