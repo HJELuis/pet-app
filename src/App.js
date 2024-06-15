@@ -30,16 +30,19 @@ function App() {
 
   const getTemperaments = () => {  
     
-    let allTemperaments = [];        
+    const temperaments = {
+      dogTemperaments: [],
+      catTemperaments: [],
+    }   
 
     dogs.map(dog => {  
             
       if(dog.temperament !== undefined) {
-        const dogTemperaments = dog.temperament.split(",");                   
-        dogTemperaments.map(temperament => {
+        const dogTemperamentsArray = dog.temperament.split(",");                   
+        dogTemperamentsArray.map(temperament => {
           const reduceTemperament = temperament.trim().toLowerCase();
-          if(!allTemperaments.includes(reduceTemperament)) {            
-            allTemperaments.push(reduceTemperament);
+          if(!temperaments.dogTemperaments.includes(reduceTemperament)) {            
+            temperaments.dogTemperaments.push(reduceTemperament);
           }
         });
       }
@@ -50,18 +53,18 @@ function App() {
     cats.map(cat => {  
             
       if(cat.temperament !== undefined) {
-        const catTemperaments = cat.temperament.split(",");         
-        catTemperaments.map(temperament => {
+        const catTemperamentsArray = cat.temperament.split(",");         
+        catTemperamentsArray.map(temperament => {
           const reduceTemperament = temperament.trim().toLowerCase();
-          if(!allTemperaments.includes(reduceTemperament)) {
-            allTemperaments.push(reduceTemperament);
+          if(!temperaments.catTemperaments.includes(reduceTemperament)) {
+            temperaments.catTemperaments.push(reduceTemperament);
           }
         });
       }
 
     });
               
-    return allTemperaments
+    return temperaments;
 
   }   
   
@@ -70,7 +73,7 @@ function App() {
   return (
     
     <div className="App">
-      <Content dogCatTemperaments={getTemperaments()}/>         
+      <Content temperaments={getTemperaments()}/>         
     </div>
   );
 }
