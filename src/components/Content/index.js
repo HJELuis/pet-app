@@ -26,7 +26,7 @@ const Content = ({dogCatTemperaments}) => {
 
    const renderContent = () => {  
     if(flag === true && form.pet === "dog") return <DogsList />
-    if(flag === false && form.pet === "cat") return <CatsList />
+    if(flag === true && form.pet === "cat") return <CatsList />
    }
           
     return (
