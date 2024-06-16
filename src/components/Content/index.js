@@ -11,8 +11,7 @@ const Content = () => {
         temperaments: [],        
     });    
 
-    const[flag, setFlag] = useState(false);
-    const [isChecked, setIsChecked] = useState(true);
+    const[flag, setFlag] = useState(false);    
    
     const [dogs,setDogs] = useState([]);
     const [cats,setCats] = useState([]);  
@@ -88,7 +87,7 @@ const Content = () => {
         if(isChecked) {
             setForm(prev => ({...prev, [event.target.name]: [...prev.temperaments, event.target.id]}))
         }else {
-            setForm(prev => ({...prev, [event.target.name]: [...prev.temperaments.filter(temperament => temperament != event.target.id)]}))
+            setForm(prev => ({...prev, [event.target.name]: [...prev.temperaments.filter(temperament => temperament !== event.target.id)]}))
         }
         
     }
