@@ -82,6 +82,7 @@ const Content = () => {
     }
 
     const handleInputChange = (event) => {
+        
         setForm(prev => ({...prev, [event.target.name]: [...prev.temperaments, event.target.id]}))
     }
 
