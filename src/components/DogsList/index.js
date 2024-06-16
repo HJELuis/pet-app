@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 
-const DogsList = () => {
+const DogsList = ({dogData, temperaments}) => {
     
     return(
         <Fragment>

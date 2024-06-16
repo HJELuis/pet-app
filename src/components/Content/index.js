@@ -1,8 +1,10 @@
-import React, { Fragment, useState} from "react";
+import React, { Fragment, useState, useEffect} from "react";
 import DogsList from "../DogsList";
 import CatsList from "../CatsList";
+import axios from "axios";
 
-const Content = ({temperaments}) => {
+const Content = () => {
+
 
     const[form, setForm] = useState({
         pet: "",
@@ -11,6 +13,70 @@ const Content = ({temperaments}) => {
 
     const[flag, setFlag] = useState(false);
    
+    const [dogs,setDogs] = useState([]);
+    const [cats,setCats] = useState([]);  
+    
+   
+    useEffect(()=>{
+  
+      const getData = async () =>{
+        try{
+          const dogsResponse = await axios.get("https://api.thedogapi.com/v1/breeds");
+          const catsResponse = await axios.get("https://api.thecatapi.com/v1/breeds");
+                          
+          setDogs(dogsResponse.data);
+          setCats(catsResponse.data);
+        }catch(error){
+          console.log(error);
+        }          
+      }    
+  
+      getData();     
+    },[])
+  
+    /*Obteniendo temperamentos para usarlos en el elemento Form*/
+  
+    const getTemperaments = () => {  
+      
+      const temperaments = {
+        dogTemperaments: [],
+        catTemperaments: [],
+      }   
+  
+      dogs.map(dog => {  
+              
+        if(dog.temperament !== undefined) {
+          const dogTemperamentsArray = dog.temperament.split(",");                   
+          dogTemperamentsArray.map(temperament => {
+            const reduceTemperament = temperament.trim().toLowerCase();
+            if(!temperaments.dogTemperaments.includes(reduceTemperament)) {            
+              temperaments.dogTemperaments.push(reduceTemperament);
+            }
+          });
+        }
+  
+      });
+     
+  
+      cats.map(cat => {  
+              
+        if(cat.temperament !== undefined) {
+          const catTemperamentsArray = cat.temperament.split(",");         
+          catTemperamentsArray.map(temperament => {
+            const reduceTemperament = temperament.trim().toLowerCase();
+            if(!temperaments.catTemperaments.includes(reduceTemperament)) {
+              temperaments.catTemperaments.push(reduceTemperament);
+            }
+          });
+        }
+  
+      });
+                
+      return temperaments;
+  
+    }   
+    
+
     const handleSelectChange = (event) => {        
         setForm( prev => ({...prev, [event.target.name]:event.target.value}));
     }
@@ -25,13 +91,13 @@ const Content = ({temperaments}) => {
     }
 
    const renderContent = () => {  
-    if(flag === true && form.pet === "dog") return <DogsList />
+    if(flag === true && form.pet === "dog") return <DogsList dogData={dogs} temperaments={form.temperaments}/>
     if(flag === true && form.pet === "cat") return <CatsList />
    }
 
    const renderTemperaments = () => {
 
-    const {dogTemperaments, catTemperaments} = temperaments;
+    const {dogTemperaments, catTemperaments} = getTemperaments();
     if(form.pet === "dog") {
         return dogTemperaments.map((temperament, index) => (                                                                                            
                                                              
