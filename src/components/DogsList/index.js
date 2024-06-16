@@ -19,8 +19,7 @@ const DogsList = ({dogData, temperaments}) => {
                             for(let i=0; i < temperamentsArray.length; i++){
                                 temperamentsArray[i] = temperamentsArray[i].trim();
                             }
-                            if(temperamentsArray.includes(upperTemperament)){
-                                console.log("Este perro se imprime")
+                            if(temperamentsArray.includes(upperTemperament)){                                
                                 return (
                                     <article key={dog.id}>
                                         <img alt={dog.name} src={`https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg`} width="200"></img>
