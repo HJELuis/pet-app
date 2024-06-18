@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Content from "./components/Content";
-import axios from "axios";
+
 
 
 function App() {  

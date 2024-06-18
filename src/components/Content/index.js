@@ -2,9 +2,9 @@ import React, { Fragment, useState} from "react";
 import DogsList from "../DogsList";
 import CatsList from "../CatsList";
 import useFetchPets from "../../hooks/useFetchPets";
+import useGetTemperaments from "../../hooks/useGetTemperaments";
 
 const Content = () => {
-
 
     const[form, setForm] = useState({
         pet: "",
@@ -14,52 +14,12 @@ const Content = () => {
     const[flag, setFlag] = useState(false);    
    
     const {dogs,cats,error} = useFetchPets();
-  
-    /*Obteniendo temperamentos para usarlos en el elemento Form*/  
-    const getTemperaments = () => {  
-      
-      const temperaments = {
-        dogTemperaments: [],
-        catTemperaments: [],
-      }   
-  
-      dogs.map(dog => {  
-              
-        if(dog.temperament !== undefined) {
-          const dogTemperamentsArray = dog.temperament.split(",");                   
-          dogTemperamentsArray.map(temperament => {
-            const reduceTemperament = temperament.trim().toLowerCase();
-            if(!temperaments.dogTemperaments.includes(reduceTemperament)) {            
-              temperaments.dogTemperaments.push(reduceTemperament);
-            }
-          });
-        }
-  
-      });
-     
-  
-      cats.map(cat => {  
-              
-        if(cat.temperament !== undefined) {
-          const catTemperamentsArray = cat.temperament.split(",");         
-          catTemperamentsArray.map(temperament => {
-            const reduceTemperament = temperament.trim().toLowerCase();
-            if(!temperaments.catTemperaments.includes(reduceTemperament)) {
-              temperaments.catTemperaments.push(reduceTemperament);
-            }
-          });
-        }
-  
-      });
-                
-      return temperaments;
-  
-    }           
 
+    const {dogTemperaments, catTemperaments} = useGetTemperaments(dogs, cats);
+            
    /*Colocando los temperamentos en el elemento Form*/
    const renderTemperaments = () => {
-
-    const {dogTemperaments, catTemperaments} = getTemperaments();
+   
     if(form.pet === "dog") {
         return dogTemperaments.map((temperament, index) => (                                                                                            
                                                              
