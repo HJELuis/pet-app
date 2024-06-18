@@ -1,7 +1,7 @@
-import React, { Fragment, useState, useEffect} from "react";
+import React, { Fragment, useState} from "react";
 import DogsList from "../DogsList";
 import CatsList from "../CatsList";
-import axios from "axios";
+import useFetchPets from "../../hooks/useFetchPets";
 
 const Content = () => {
 
@@ -13,26 +13,7 @@ const Content = () => {
 
     const[flag, setFlag] = useState(false);    
    
-    const [dogs,setDogs] = useState([]);
-    const [cats,setCats] = useState([]);  
-    
-   
-    useEffect(()=>{
-  
-      const getData = async () =>{
-        try{
-          const dogsResponse = await axios.get("https://api.thedogapi.com/v1/breeds");
-          const catsResponse = await axios.get("https://api.thecatapi.com/v1/breeds");
-                          
-          setDogs(dogsResponse.data);
-          setCats(catsResponse.data);
-        }catch(error){
-          console.log(error);
-        }          
-      }    
-  
-      getData();     
-    },[])
+    const {dogs,cats,error} = useFetchPets();
   
     /*Obteniendo temperamentos para usarlos en el elemento Form*/  
     const getTemperaments = () => {  
@@ -142,14 +123,14 @@ const Content = () => {
                 <fieldset>
                     <legend>Choose a temperament that you'd like your pet had</legend> 
                     {                                                
-                        renderTemperaments()
+                        error === false ? renderTemperaments() : <p>There was a problem</p>
                     }                                                                                                                             
                 </fieldset>  
                 <button value="submit">Search</button>
             </form> 
             <section>
                 {
-                   renderContent()                                                               
+                   error === false ? renderContent():<p>There was a problem</p>                                                               
                 }                                
             </section>                
              

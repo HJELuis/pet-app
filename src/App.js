@@ -3,10 +3,7 @@ import Content from "./components/Content";
 import axios from "axios";
 
 
-function App() {
-
- 
-  
+function App() {  
 
   return (
     
