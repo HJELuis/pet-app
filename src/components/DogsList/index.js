@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 
 const DogsList = ({dogData, temperaments}) => {
 
-    
+    let displayedDogs = [];
     
     return(
         <Fragment>
@@ -19,7 +19,8 @@ const DogsList = ({dogData, temperaments}) => {
                             for(let i=0; i < temperamentsArray.length; i++){
                                 temperamentsArray[i] = temperamentsArray[i].trim();
                             }
-                            if(temperamentsArray.includes(upperTemperament)){                                
+                            if(temperamentsArray.includes(upperTemperament) && !displayedDogs.includes(dog.id)){    
+                                displayedDogs.push(dog.id);
                                 return (
                                     <article key={dog.id}>
                                         <img alt={dog.name} src={`https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg`} width="200"></img>
