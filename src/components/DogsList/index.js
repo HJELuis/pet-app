@@ -19,6 +19,7 @@ const DogsList = ({dogData, temperaments}) => {
                             for(let i=0; i < temperamentsArray.length; i++){
                                 temperamentsArray[i] = temperamentsArray[i].trim();
                             }
+                              /*Se despliega un perro si alguno de sus temperamentos coincide con la lista de temperamentos seleccionadas en el Form*/
                             if(temperamentsArray.includes(upperTemperament) && !displayedDogs.includes(dog.id)){    
                                 displayedDogs.push(dog.id);
                                 return (

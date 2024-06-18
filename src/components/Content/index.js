@@ -34,8 +34,7 @@ const Content = () => {
       getData();     
     },[])
   
-    /*Obteniendo temperamentos para usarlos en el elemento Form*/
-  
+    /*Obteniendo temperamentos para usarlos en el elemento Form*/  
     const getTemperaments = () => {  
       
       const temperaments = {
@@ -74,34 +73,9 @@ const Content = () => {
                 
       return temperaments;
   
-    }   
-    
+    }           
 
-    const handleSelectChange = (event) => {        
-        setForm( prev => ({...prev, [event.target.name]:event.target.value}));
-    }
-
-    const handleInputChange = (event) => {         
-        console.log(event.target.checked);
-        const isChecked = event.target.checked;
-        if(isChecked) {
-            setForm(prev => ({...prev, [event.target.name]: [...prev.temperaments, event.target.id]}))
-        }else {
-            setForm(prev => ({...prev, [event.target.name]: [...prev.temperaments.filter(temperament => temperament !== event.target.id)]}))
-        }
-        
-    }
-
-    const handleSubmit = (event) => {                    
-        event.preventDefault();  
-        setFlag(true);            
-    }
-
-   const renderContent = () => {  
-    if(flag === true && form.pet === "dog") return <DogsList dogData={dogs} temperaments={form.temperaments}/>
-    if(flag === true && form.pet === "cat") return <CatsList />
-   }
-
+   /*Colocando los temperamentos en el elemento Form*/
    const renderTemperaments = () => {
 
     const {dogTemperaments, catTemperaments} = getTemperaments();
@@ -127,6 +101,32 @@ const Content = () => {
     }
    
    }
+
+  const handleSelectChange = (event) => {        
+    setForm( prev => ({...prev, [event.target.name]:event.target.value}));
+  }
+
+
+  /*Revisando si estan palomeadas o no las casillas y modificando el arreglo del estado form */
+  const handleInputChange = (event) => {               
+      const isChecked = event.target.checked;
+      if(isChecked) {
+          setForm(prev => ({...prev, [event.target.name]: [...prev.temperaments, event.target.id]}))
+      }else {
+          setForm(prev => ({...prev, [event.target.name]: [...prev.temperaments.filter(temperament => temperament !== event.target.id)]}))
+      }
+      
+  }
+
+  const handleSubmit = (event) => {                    
+      event.preventDefault();  
+      setFlag(true);            
+  }
+
+  const renderContent = () => {  
+    if(flag === true && form.pet === "dog") return <DogsList dogData={dogs} temperaments={form.temperaments}/>
+    if(flag === true && form.pet === "cat") return <CatsList catData={cats} temperaments={form.temperaments}/>
+  }
           
     return (
         <Fragment>            
@@ -145,7 +145,7 @@ const Content = () => {
                         renderTemperaments()
                     }                                                                                                                             
                 </fieldset>  
-                <button value="submit">Ingresar</button>
+                <button value="submit">Search</button>
             </form> 
             <section>
                 {
