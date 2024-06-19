@@ -9,6 +9,7 @@ const DogsList = ({dogData, temperaments}) => {
         <Fragment>
            
             {
+
                 dogData.map(dog => {
 
                     return (temperaments.map(tempera => {
@@ -34,7 +35,7 @@ const DogsList = ({dogData, temperaments}) => {
                          
                     }) )
 
-                })
+                })                
             }
                         
         </Fragment>

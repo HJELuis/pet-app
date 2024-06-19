@@ -3,6 +3,7 @@ import useFetchPets from "./hooks/useFetchPets";
 import useGetTemperaments from "./hooks/useGetTemperaments";
 import DogsList from "./components/DogsList";
 import CatsList from "./components/CatsList";
+import Form from "./components/Form";
 
 function App() {  
 
@@ -66,29 +67,13 @@ function App() {
 
   const renderContent = () => {  
     if(flag === true && form.pet === "dog") return <DogsList dogData={dogs} temperaments={form.temperaments}/>
-    if(flag === true && form.pet === "cat") return <CatsList catData={cats} temperaments={form.temperaments}/>
+    if(flag === true && form.pet === "cat") return <CatsList catData={cats} temperaments={form.temperaments}/>    
   }
 
   return (
     
-    <div className="App">
-       <form onSubmit={handleSubmit}>                
-          <fieldset>
-            <legend>Choose a pet</legend>
-            <select name="pet" onChange={handleSelectChange}>
-                <option value=""></option>
-                <option value="dog">Dog</option>
-                <option value="cat">Cat</option>
-            </select>
-          </fieldset> 
-          <fieldset>
-            <legend>Choose a temperament that you'd like your pet had</legend> 
-            {                                                
-                error === false ? renderTemperaments() : <p>There was a problem</p>
-            }                                                                                                                             
-          </fieldset>  
-            <button value="submit">Search</button>
-        </form> 
+    <div className="App">   
+        <Form handleSubmit={handleSubmit} handleSelectChange={handleSelectChange} renderTemperaments={renderTemperaments} error={error}></Form>    
         <section>
           {
             error === false ? renderContent():<p>There was a problem</p>                                                               
