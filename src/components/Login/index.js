@@ -12,12 +12,13 @@ const Login = () => {
 
 
     const handleChange = (event) => {
-        setForm(...prev => ({...prev, [event.id]: event.value}));
+        console.log(event);
+        setForm(prev => ({...prev, [event.target.id]: event.target.value}));
     }
 
     const handleSubmit = () => {
         if(form.username === USERNAME && form.password === PASSWORD){
-            //La lógica para desplegar el contenido
+            alert("Right Password");
         }
         else {
            alert("Incorrect Password");
