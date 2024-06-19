@@ -1,6 +1,9 @@
 import React, {Fragment, useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+
+    const navigate = useNavigate();
 
     const [form, setForm] = useState({
         username: "",
@@ -10,21 +13,19 @@ const Login = () => {
     const USERNAME = "user";
     const PASSWORD = "password";
 
-
-    const handleChange = (event) => {
-        console.log(event);
+    const handleChange = (event) => {       
         setForm(prev => ({...prev, [event.target.id]: event.target.value}));
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
         if(form.username === USERNAME && form.password === PASSWORD){
-            alert("Right Password");
+           navigate("/content");
         }
         else {
            alert("Incorrect Password");
         }
     }
-
 
     return(
         <Fragment>
