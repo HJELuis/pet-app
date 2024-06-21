@@ -26,8 +26,8 @@ const DogsList = ({dogData, temperaments}) => {
                                 return (
                                     <article key={dog.id}>
                                         <img alt={dog.name} src={`https://cdn2.thedogapi.com/images/${dog.reference_image_id}.jpg`} width="200"></img>
-                                        <p>{dog.name}</p>
-                                        <p>{dog.temperament}</p>
+                                        <p>Name: {dog.name}</p>
+                                        <p>Temperaments: {dog.temperament}</p>
                                     </article>
                                 )  
                             } 

@@ -4,7 +4,7 @@ import useFetchPets from "../../hooks/useFetchPets";
 import DogsList from "../DogsList";
 import CatsList from "../CatsList";
 import Form from "../Form";
-import Header from "../Header";
+
 
 const Content = () => {
 

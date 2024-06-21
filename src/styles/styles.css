@@ -24,7 +24,7 @@ h1 {
     width: 6em;
     height: 2em;
     font-size: 0.9rem;
-
+    margin-left: 10px;
 }
 
 #login-button:hover {    
