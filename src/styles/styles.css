@@ -1,0 +1,75 @@
+
+body {
+    margin: 0;
+}
+
+header {
+    background-color: #5AB2FF;
+}
+
+h1 {
+    color: #FFF9D0;
+    margin: 0px 0 20px 0px;
+    padding: 10px;
+}
+
+.login-form {
+    margin: 10px 10px;
+    font-size: 1em;
+}
+
+#login-button {    
+    background-color:#A0DEFF;
+    border-radius: 10px;
+    width: 6em;
+    height: 2em;
+    font-size: 0.9rem;
+
+}
+
+#login-button:hover {    
+    background-color: #000000;
+    color: #A0DEFF;
+}
+
+#app-button {
+    font-size: 0.9rem;
+    background-color:#A0DEFF;
+    border-radius: 10px;
+    width: 6em;
+    height: 2em;
+    margin: 10px 10px 0px 0px;    
+}
+
+#app-button:hover {
+    background-color: #000000;
+    color: #A0DEFF;
+}
+
+#app-form {
+    margin: 10px;
+    font-size: 1.2rem;
+}
+
+
+#app-fieldset{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+form + section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-gap: 10px;
+    margin: 10px;
+}
+
+article {
+    font-size: 1.2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFF9D0;
+    box-shadow: 3px 0px 2px 1px rgba(0, 0, 0, 0.2);
+}
+

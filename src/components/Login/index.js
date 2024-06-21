@@ -30,11 +30,15 @@ const Login = () => {
     return(
         <Fragment>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username: </label>
-                <input id="username" type="text" onChange={handleChange}/>
-                <label htmlFor="password">Password: </label>
-                <input id="password" type="text" onChange={handleChange}/>
-                <button value="submit">Ingresar</button>
+                <div class="login-form">
+                    <label htmlFor="username">Username: </label>
+                    <input id="username" type="text" onChange={handleChange}/>
+                </div>
+                <div class="login-form">
+                    <label htmlFor="password">Password: </label>
+                    <input id="password" type="text" onChange={handleChange}/>
+                </div>                
+                <button value="submit" id="login-button">Ingresar</button>
             </form>
         </Fragment>        
     )

@@ -4,6 +4,7 @@ import useFetchPets from "../../hooks/useFetchPets";
 import DogsList from "../DogsList";
 import CatsList from "../CatsList";
 import Form from "../Form";
+import Header from "../Header";
 
 const Content = () => {
 
@@ -24,7 +25,7 @@ const Content = () => {
     if(form.pet === "dog") {
         return dogTemperaments.map((temperament, index) => (                                                                                            
                                                              
-            <div key={index} style={{display: 'inline'}}>                                    
+            <div key={index} >                                    
                 <label htmlFor={`${temperament.toLowerCase()}`}>{temperament.replace(temperament[0], temperament[0].toUpperCase())}</label>
                 <input name="temperaments" id={`${temperament.toLowerCase()}`} type="checkbox" onChange={handleInputChange} /> 
             </div> 
@@ -71,7 +72,8 @@ const Content = () => {
   }
           
     return (
-        <Fragment>            
+        <Fragment>       
+               
             <Form handleSubmit={handleSubmit} handleSelectChange={handleSelectChange} renderTemperaments={renderTemperaments} error={error}></Form>
             <section>
                 {
