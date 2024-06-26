@@ -1,9 +1,24 @@
 import React, { Fragment } from "react";
 
 
-const DogsList = ({dogData, temperaments}) => {
+interface Dog {
+    temperament: string;
+    id: number;
+    name: string;
+    reference_image_id: string;
+    
+  }
 
-    let displayedDogs = [];
+interface DogsListProps {
+    dogData: Dog[];
+    temperaments: string[];
+}
+
+
+
+const DogsList = ({dogData, temperaments}: DogsListProps) => {
+
+    let displayedDogs: number[] = [];
     
     return(
         <Fragment>

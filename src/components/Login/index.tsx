@@ -1,23 +1,28 @@
 import React, {Fragment, useState} from "react";
 import { useNavigate } from "react-router-dom";
 
+type FormState = {
+    username: string;
+    password: string;
+}
+
 const Login = () => {
 
     const navigate = useNavigate();
 
-    const [form, setForm] = useState({
+    const [form, setForm] = useState<FormState>({
         username: "",
         password: "",
     });
 
-    const USERNAME = "user";
-    const PASSWORD = "password";
+    const USERNAME: string = "user";
+    const PASSWORD: string = "password";
 
-    const handleChange = (event) => {       
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {       
         setForm(prev => ({...prev, [event.target.id]: event.target.value}));
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
         event.preventDefault();
         if(form.username === USERNAME && form.password === PASSWORD){
            navigate("/content");
@@ -30,11 +35,11 @@ const Login = () => {
     return(
         <Fragment>
             <form onSubmit={handleSubmit}>
-                <div class="login-form">
+                <div className="login-form">
                     <label htmlFor="username">Username: </label>
                     <input id="username" type="text" onChange={handleChange}/>
                 </div>
-                <div class="login-form">
+                <div className="login-form">
                     <label htmlFor="password">Password: </label>
                     <input id="password" type="text" onChange={handleChange}/>
                 </div>                

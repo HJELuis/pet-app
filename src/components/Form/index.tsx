@@ -1,6 +1,13 @@
 import React, {Fragment} from "react";
 
-const Form = ({handleSubmit, handleSelectChange, renderTemperaments,error}) => {
+interface FormProps {
+    handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+    handleSelectChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    renderTemperaments: () => JSX.Element[] | undefined;
+    error: boolean;
+  }
+
+const Form: React.FC<FormProps> = ({handleSubmit, handleSelectChange, renderTemperaments,error}) => {
 
     return (
         <Fragment>

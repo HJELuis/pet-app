@@ -6,7 +6,9 @@ import CatsList from "../CatsList";
 import Form from "../Form";
 
 
-const Content = () => {
+
+
+const Content: React.FC = () => {
 
     const[form, setForm] = useState({
         pet: "",
@@ -20,10 +22,10 @@ const Content = () => {
     const {dogTemperaments, catTemperaments} = useGetTemperaments(dogs, cats);
             
    /*Colocando los temperamentos en el elemento Form*/
-   const renderTemperaments = () => {
+   const renderTemperaments: () => JSX.Element[] | undefined = () => {
    
     if(form.pet === "dog") {
-        return dogTemperaments.map((temperament, index) => (                                                                                            
+        return dogTemperaments.map((temperament: string, index) => (                                                                                            
                                                              
             <div key={index} >                                    
                 <label htmlFor={`${temperament.toLowerCase()}`}>{temperament.replace(temperament[0], temperament[0].toUpperCase())}</label>
@@ -33,7 +35,7 @@ const Content = () => {
         )) 
 
     }else if(form.pet === "cat") {
-        return catTemperaments.map((temperament, index) => (                                                                                            
+        return catTemperaments.map((temperament: string, index) => (                                                                                            
                                                              
             <div key={index} style={{display: 'inline'}}>                                    
                 <label htmlFor={`${temperament.toLowerCase()}`}>{temperament.replace(temperament[0], temperament[0].toUpperCase())}</label>
@@ -45,13 +47,13 @@ const Content = () => {
    
    }
 
-  const handleSelectChange = (event) => {        
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {        
     setForm( prev => ({...prev, [event.target.name]:event.target.value}));
   }
 
 
   /*Revisando si estan palomeadas o no las casillas y modificando el arreglo del estado form */
-  const handleInputChange = (event) => {               
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {               
       const isChecked = event.target.checked;
       if(isChecked) {
           setForm(prev => ({...prev, [event.target.name]: [...prev.temperaments, event.target.id]}))
@@ -61,7 +63,7 @@ const Content = () => {
       
   }
 
-  const handleSubmit = (event) => {                    
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {                    
       event.preventDefault();  
       setFlag(true);            
   }
